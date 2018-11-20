@@ -64,6 +64,7 @@ echo "* * * * * cd ~/.innovacore/sentinel && ./venv/bin/python bin/sentinel.py 2
 echo "*/30 * * * * ~/mnchecker/mnchecker --currency-handle=\"innova\" --currency-bin-cli=\"innova-cli\" --currency-datadir=\"~/.innovacore\" > ~/mnchecker/mnchecker-cron.log 2>&1" >> tempcron
 crontab tempcron
 
+chmod +x ~/.innovacore/sentinel/bin/*.py
 rm tempcron
 rm -rf ~/innova
 rm -rf innovascript
