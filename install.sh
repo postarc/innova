@@ -37,7 +37,7 @@ echo -e "rpcuser=innovauser\nrpcpassword=${GEN_PASS}\nrpcport=$RPCPORT\nexternal
 # set masternodeprivkey
 #cd ~/innova
 innovad -daemon
-sleep 20
+sleep 10
 MASTERNODEKEY=$(./innova-cli masternode genkey)
 echo -e "masternode=1\nmasternodeprivkey=$MASTERNODEKEY" >> ~/.innovacore/innova.conf
 innova-cli stop
