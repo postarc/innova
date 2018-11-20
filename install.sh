@@ -46,7 +46,7 @@ innova-cli stop
 echo "Start Sentinel installing process..."
 cd ~/.innovacore
 sudo apt-get install -y git python-virtualenv
-sudo git clone https://github.com/innovacoin/sentinel.git
+git clone https://github.com/innovacoin/sentinel.git
 cd sentinel
 export LC_ALL=C
 sudo apt-get install -y virtualenv
