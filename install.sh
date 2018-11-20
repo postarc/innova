@@ -58,8 +58,8 @@ cd ~
 sudo git clone https://github.com/innovacointeam/mnchecker ~/mnchecker
 # setup cron
 crontab -l > tempcron
-echo "@reboot /usr/local/bin/innovad -daemon"
-echo "* * * * * cd ~/.innovacore/sentinel && ./venv/bin/python bin/sentinel.py 2>&1 >> sentinel-cron.log" > tempcron
+echo "@reboot /usr/local/bin/innovad -daemon" > tempcron
+echo "* * * * * cd ~/.innovacore/sentinel && ./venv/bin/python bin/sentinel.py 2>&1 >> sentinel-cron.log" >> tempcron
 echo "*/30 * * * * ~/mnchecker/mnchecker --currency-handle=\"innova\" --currency-bin-cli=\"innova-cli\" --currency-datadir=\"~/.innovacore\" > ~/mnchecker/mnchecker-cron.log 2>&1" >> tempcron
 crontab tempcron
 
