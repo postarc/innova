@@ -12,8 +12,8 @@ wget $COIN
 tar xvzf linux_x64.tar.gz
 if [ ! -f "/usr/local/bin/innovad" ]; then
 	echo "Copying bin files...."
-	sudo chown -R root:users /usr/local/bin
 	sudo cp innova* /usr/local/bin
+	sudo chown -R root:users /usr/local/bin
 else
 	echo "Bin files exist. Skipping copy..."
 fi
