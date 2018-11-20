@@ -55,7 +55,7 @@ venv/bin/pip install -r requirements.txt
 
 # get mnchecker
 cd ~
-sudo git clone https://github.com/innovacointeam/mnchecker ~/mnchecker
+git clone https://github.com/innovacointeam/mnchecker ~/mnchecker
 # setup cron
 crontab -l > tempcron
 echo "@reboot /usr/local/bin/innovad -daemon" > tempcron
