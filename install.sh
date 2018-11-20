@@ -11,27 +11,27 @@ cd ~/innova
 wget $COIN
 tar xvzf linux_x64.tar.gz
 if [ ! -f "/usr/local/bin/innovad" ]; then
-	echo "Copying bin files...."
+	echo -e "\e[32mCopying bin files...\e[0m"
 	sudo cp innova* /usr/local/bin
 	sudo chown -R root:users /usr/local/bin
 else
-	echo "Bin files exist. Skipping copy..."
+	echo -e "\e[31mBin files exist. Skipping copy...\e[0m"
 fi
 
 sudo apt-get install -y pwgen
 
 # writing innova.conf file:
-echo "Writing innova config file..."
+echo -e "\e[32mWriting innova config file...\e[0m"
 while [ -n "$(sudo lsof -i -s TCP:LISTEN -P -n | grep $RPCPORT)" ]
 do
 (( RPCPORT--))
 done
-echo "Free RPCPORT address:$RPCPORT"
+echo -e "\e[32mFree RPCPORT address:$RPCPORT\e[0m"
 while [ -n "$(sudo lsof -i -s TCP:LISTEN -P -n | grep $PORT)" ]
 do
 (( PORT++))
 done
-echo "Free MN port address:$PORT"
+echo -e "\e[32mFree MN port address:$PORT\e[0m"
 NODEIP=$(curl -s4 icanhazip.com)
 GEN_PASS=`pwgen -1 20 -n`
 echo -e "rpcuser=innovauser\nrpcpassword=${GEN_PASS}\nrpcport=$RPCPORT\nexternalip=$NODEIP:14520\nport=$PORT\nlisten=1\nmaxconnections=256" > ~/.innovacore/innova.conf
@@ -44,7 +44,7 @@ echo -e "masternode=1\nmasternodeprivkey=$MASTERNODEKEY" >> ~/.innovacore/innova
 innova-cli stop
 
 # installing SENTINEL
-echo "Start Sentinel installing process..."
+echo -e "\e[32mStart Sentinel installing process...\e[0m"
 cd ~/.innovacore
 sudo apt-get install -y git python-virtualenv
 git clone https://github.com/innovacoin/sentinel.git
@@ -66,6 +66,6 @@ crontab tempcron
 
 rm tempcron
 rm -rf ~/innova
-echo "VPS ip: $NODEIP"
-echo "Masternode private key: $MASTERNODEKEY"
-echo "Job completed successfully"
+echo -e "VPS ip: \e[32m$NODEIP\e[0m"
+echo -e "Masternode private key: \e[32m$MASTERNODEKEY\e[0m"
+echo -e "\e[32mJob completed successfully\e[0m"
