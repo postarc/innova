@@ -21,12 +21,12 @@ sudo apt-get install -y pwgen
 
 # writing innova.conf file:
 echo "Writing innova config file..."
-while [ -n "$(lsof -i -s TCP:LISTEN -P -n | grep $RPCPORT)" ]
+while [ -n "$(sudo lsof -i -s TCP:LISTEN -P -n | grep $RPCPORT)" ]
 do
 (( RPCPORT--))
 done
 echo "Free RPCPORT address:$RPCPORT"
-while [ -n "$(lsof -i -s TCP:LISTEN -P -n | grep $PORT)" ]
+while [ -n "$(sudo lsof -i -s TCP:LISTEN -P -n | grep $PORT)" ]
 do
 (( PORT++))
 done
