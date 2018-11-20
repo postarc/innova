@@ -34,7 +34,13 @@ echo "Free MN port address:$PORT"
 NODEIP=$(curl -s4 icanhazip.com)
 GEN_PASS=`pwgen -1 20 -n`
 echo -e "rpcuser=innovauser\nrpcpassword=${GEN_PASS}\nrpcport=$RPCPORT\nexternalip=$NODEIP:14520\nport=$PORT\nlisten=1\nmaxconnections=256" > ~/.innovacore/innova.conf
+# set masternodeprivkey
+#cd ~/innova
 innovad -daemon
+sleep 20
+MASTERNODEKEY=$(./innova-cli masternode genkey)
+echo -e "masternode=1\nmasternodeprivkey=$MASTERNODEKEY" >> ~/.innovacore/innova.conf
+innova-cli stop
 
 # installing SENTINEL
 echo "Start Sentinel installing process..."
@@ -46,12 +52,6 @@ export LC_ALL=C
 sudo apt-get install -y virtualenv
 virtualenv venv
 venv/bin/pip install -r requirements.txt
-
-# set masternodeprivkey
-#cd ~/innova
-MASTERNODEKEY=$(./innova-cli masternode genkey)
-echo -e "masternode=1\nmasternodeprivkey=$MASTERNODEKEY" >> ~/.innovacore/innova.conf
-innova-cli stop
 
 # get mnchecker
 cd ~
@@ -65,11 +65,9 @@ crontab tempcron
 
 rm tempcron
 rm -rf ~/innova
-sleep 3
 #sudo chown -R $USER:$USER ~/
 #cd ~/innova
 clear
-innovad -daemon
 echo "VPS ip: $NODEIP"
 echo "Masternode private key: $masternodekey"
-echo "Job completed successfully" 
+echo "Job completed successfully"
