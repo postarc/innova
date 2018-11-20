@@ -67,7 +67,6 @@ rm tempcron
 rm -rf ~/innova
 #sudo chown -R $USER:$USER ~/
 #cd ~/innova
-clear
 echo "VPS ip: $NODEIP"
 echo "Masternode private key: $MASTERNODEKEY"
 echo "Job completed successfully"
