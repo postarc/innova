@@ -53,6 +53,7 @@ export LC_ALL=C
 sudo apt-get install -y virtualenv
 virtualenv venv
 venv/bin/pip install -r requirements.txt
+echo "innova_conf=/home/$USER/.innovacore/innova.conf" >> sentinel.conf
 
 # get mnchecker
 cd ~
