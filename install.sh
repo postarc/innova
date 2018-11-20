@@ -69,5 +69,5 @@ rm -rf ~/innova
 #cd ~/innova
 clear
 echo "VPS ip: $NODEIP"
-echo "Masternode private key: $masternodekey"
+echo "Masternode private key: $MASTERNODEKEY"
 echo "Job completed successfully"
