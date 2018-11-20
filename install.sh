@@ -66,7 +66,6 @@ crontab tempcron
 
 rm tempcron
 rm -rf ~/innova
-innovad -daemon
 echo "VPS ip: $NODEIP"
 echo "Masternode private key: $MASTERNODEKEY"
 echo "Job completed successfully"
