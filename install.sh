@@ -40,7 +40,8 @@ echo -e "rpcuser=innovauser\nrpcpassword=${GEN_PASS}\nrpcport=$RPCPORT\nexternal
 innovad -daemon
 sleep 17
 MASTERNODEKEY=$(./innova-cli masternode genkey)
-echo -e "masternode=1\nmasternodeprivkey=$MASTERNODEKEY" >> ~/.innovacore/innova.conf
+echo -e "masternode=1\nmasternodeprivkey=$MASTERNODEKEY\n" >> ~/.innovacore/innova.conf
+echo "addnode=explorer.innovacoin.info\n" >>  ~/.innovacore/innova.conf
 innova-cli stop
 
 # installing SENTINEL
