@@ -19,6 +19,7 @@ else
 fi
 
 sudo apt-get install -y pwgen
+sudo apt-get install -y curl
 
 # writing innova.conf file:
 echo -e "\e[32mWriting innova config file...\e[0m"
