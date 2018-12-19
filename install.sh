@@ -39,6 +39,7 @@ GEN_PASS=`pwgen -1 20 -n`
 echo -e "rpcuser=innovauser\nrpcpassword=${GEN_PASS}\nrpcport=$RPCPORT\nexternalip=$NODEIP:14520\nport=$PORT\nlisten=1\nmaxconnections=256" > ~/.innovacore/innova.conf
 # set masternodeprivkey
 #cd ~/innova
+echo -e "\033[0;33mEnter your Masternode GEN Key. Or Press enter generate New Genkey\033[0m"
 read -e MASTERNODEKEY
 if [[ -z "$MASTERNODEKEY" ]]; then
   innovad -daemon
