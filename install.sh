@@ -21,6 +21,7 @@ fi
 sudo apt-get install -y pwgen
 sudo apt-get install -y curl
 sudo apt-get install -y lsof
+sudo chown -R $USER:$USER ~/
 
 
 # writing innova.conf file:
