@@ -22,6 +22,7 @@ sudo apt-get install -y pwgen
 sudo apt-get install -y curl
 sudo apt-get install -y lsof
 
+
 # writing innova.conf file:
 echo -e "\e[32mWriting innova config file...\e[0m"
 while [ -n "$(sudo lsof -i -s TCP:LISTEN -P -n | grep $RPCPORT)" ]
