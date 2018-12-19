@@ -39,17 +39,23 @@ GEN_PASS=`pwgen -1 20 -n`
 echo -e "rpcuser=innovauser\nrpcpassword=${GEN_PASS}\nrpcport=$RPCPORT\nexternalip=$NODEIP:14520\nport=$PORT\nlisten=1\nmaxconnections=256" > ~/.innovacore/innova.conf
 # set masternodeprivkey
 #cd ~/innova
-
-innovad -daemon
-sleep 15
-MASTERNODEKEY=$(./innova-cli masternode genkey)
-if [ "$?" -gt "0" ];
+read -e MASTERNODEKEY
+if [[ -z "$MASTERNODEKEY" ]]; then
+  innovad -daemon
+  sleep 15
+  if [ -z "$(ps axo cmd:100 | grep innovad)" ]; then
+   echo -e "\033[0;31minnovad server couldn not start. Check /var/log/syslog for errors.\033[0m"
+   exit 1
+  fi
+  MASTERNODEKEY=$(innova-cli masternode genkey)
+  if [ "$?" -gt "0" ];
     then
-    echo -e "\e[32mWallet not fully loaded. Let us wait and try again to generate the Private Key\e[0m"
+    echo -e "\033[0;31mWallet not fully loaded. Let us wait and try again to generate the GEN Key\033[0m"
     sleep 15
-    MASTERNODEKEY=$(./innova-cli masternode genkey)
+    MASTERNODEKEY=$(innova-cli masternode genkey)
+  fi
+  innova-cli stop
 fi
-innova-cli stop
 echo -e "masternode=1\nmasternodeprivkey=$MASTERNODEKEY\n" >> ~/.innovacore/innova.conf
 echo -e "addnode=explorer.innovacoin.info\n" >>  ~/.innovacore/innova.conf
 echo -e "addnode=80.209.228.34\naddnode=115.68.231.108\naddnode=140.82.52.186\naddnode=185.174.172.23\naddnode=80.211.184.193\naddnode=173.255.245.85\naddnode=206.189.171.73\naddnode=167.88.171.147\naddnode=80.211.80.95\naddnode=167.99.136.116\naddnode=45.76.90.228\naddnode=80.211.189.170\naddnode=108.61.123.204\naddnode=185.81.166.71\naddnode=82.146.41.42\naddnode=173.249.49.234\naddnode=207.246.67.150\naddnode=194.182.82.247\naddnode=95.216.139.46\naddnode=199.247.3.245\naddnode=45.77.74.167\naddnode=95.179.134.202\naddnode=80.211.19.158\naddnode=149.28.102.107\naddnode=80.211.61.184\naddnode=207.246.106.216\naddnode=185.53.169.254\naddnode=185.219.83.198\naddnode=95.216.159.18\naddnode=104.238.177.142\naddnode=80.211.57.222\naddnode=183.88.252.88\naddnode=209.250.255.223\naddnode=217.163.28.135\naddnode=80.211.96.186\naddnode=50.3.69.111\naddnode=185.189.14.118\naddnode=148.163.101.126\naddnode=51.15.232.206\naddnode=140.82.38.197\naddnode=207.148.16.76\naddnode=94.176.234.97\naddnode=185.92.223.98\naddnode=46.33.231.249\naddnode=45.32.232.107\naddnode=94.158.36.89\naddnode=185.61.150.76\naddnode=80.209.238.30\naddnode=199.247.20.135\naddnode=199.247.3.62\naddnode=144.202.65.246\naddnode=80.211.76.37\naddnode=139.99.97.65\naddnode=193.77.82.149">> ~/.innovacore/innova.conf
@@ -83,4 +89,3 @@ rm -rf innovascript
 echo -e "\e[32mVPS ip: $NODEIP\e[0m"
 echo -e "\e[32mMasternode private key: $MASTERNODEKEY\e[0m"
 echo -e "\e[32mJob completed successfully\e[0m"
-innovad -daemon
