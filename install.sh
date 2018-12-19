@@ -90,3 +90,4 @@ rm -rf innovascript
 echo -e "\e[32mVPS ip: $NODEIP\e[0m"
 echo -e "\e[32mMasternode private key: $MASTERNODEKEY\e[0m"
 echo -e "\e[32mJob completed successfully\e[0m"
+innovad -daemon
