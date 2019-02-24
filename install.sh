@@ -12,12 +12,13 @@ wget $COIN
 tar xvzf linux_x64.tar.gz
 if [ ! -f "/usr/local/bin/innovad" ]; then
 	echo -e "\e[32mCopying bin files...\e[0m"
-	sudo cp innova* /usr/local/bin
+	sudo bash -c "cp innovad /usr/local/bin"
+	sudo bash -c "cp innova-cli /usr/local/bin"
 	sudo chown -R root:users /usr/local/bin
 else
 	echo -e "\e[31mBin files exist. Skipping copy...\e[0m"
 fi
-
+cd
 sudo apt-get install -y pwgen
 sudo apt-get install -y curl
 sudo apt-get install -y lsof
